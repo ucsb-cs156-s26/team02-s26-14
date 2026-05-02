@@ -1,5 +1,12 @@
 const articleFixtures = {
-  oneArticle: {},
+  oneArticle: {
+    id: 1,
+    title: "complete guide to testing",
+    url: "https://example.com",
+    explanation: "Example article for testing",
+    email: "test@ucsb.edu",
+    dateAdded: "2026-05-01T10:23:45",
+  },
   threeArticles: [
     {
       id: 2,
