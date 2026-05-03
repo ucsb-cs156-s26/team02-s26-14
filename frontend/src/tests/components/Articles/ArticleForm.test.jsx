@@ -63,13 +63,24 @@ describe("ArticleForm tests", () => {
     expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
     expect(screen.getByText(`Id`)).toBeInTheDocument();
 
-    expect(screen.getByLabelText("Id")).toHaveValue(String(articleFixtures.oneArticle.id));
-    expect(screen.getByLabelText("Title")).toHaveValue(articleFixtures.oneArticle.title);
-    expect(screen.getByLabelText("URL")).toHaveValue(articleFixtures.oneArticle.url);
-    expect(screen.getByLabelText("Explanation")).toHaveValue(articleFixtures.oneArticle.explanation);
-    expect(screen.getByLabelText("Email")).toHaveValue(articleFixtures.oneArticle.email);
-    expect(screen.getByLabelText("Date Added")).toHaveValue(articleFixtures.oneArticle.dateAdded);
-
+    expect(screen.getByLabelText("Id")).toHaveValue(
+      String(articleFixtures.oneArticle.id),
+    );
+    expect(screen.getByLabelText("Title")).toHaveValue(
+      articleFixtures.oneArticle.title,
+    );
+    expect(screen.getByLabelText("URL")).toHaveValue(
+      articleFixtures.oneArticle.url,
+    );
+    expect(screen.getByLabelText("Explanation")).toHaveValue(
+      articleFixtures.oneArticle.explanation,
+    );
+    expect(screen.getByLabelText("Email")).toHaveValue(
+      articleFixtures.oneArticle.email,
+    );
+    expect(screen.getByLabelText("Date Added")).toHaveValue(
+      articleFixtures.oneArticle.dateAdded,
+    );
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
