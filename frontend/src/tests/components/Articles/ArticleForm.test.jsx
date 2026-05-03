@@ -42,6 +42,13 @@ describe("ArticleForm tests", () => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
     });
+
+    expect(screen.getByTestId(`${testId}-title`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-url`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-explanation`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-email`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-dateAdded`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-submit`)).toBeInTheDocument();
   });
 
   test("renders correctly when passing in initialContents", async () => {
@@ -78,7 +85,7 @@ describe("ArticleForm tests", () => {
     expect(screen.getByLabelText("Email")).toHaveValue(
       articleFixtures.oneArticle.email,
     );
-    expect(screen.getByLabelText("Date Added")).toHaveValue(
+    expect(screen.getByLabelText(/Date Added/i).value).toContain(
       articleFixtures.oneArticle.dateAdded,
     );
   });
@@ -110,26 +117,39 @@ describe("ArticleForm tests", () => {
 
     expect(await screen.findByText(/Create/)).toBeInTheDocument();
     const submitButton = screen.getByText(/Create/);
+    expect(screen.queryByText(/Date is required/)).not.toBeInTheDocument();
     fireEvent.click(submitButton);
 
     await screen.findByText(/Title is required/);
     expect(screen.getByText(/URL is required/)).toBeInTheDocument();
     expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
     expect(screen.getByText(/Email is required/)).toBeInTheDocument();
-    expect(screen.getByText(/Date Added/i)).toBeInTheDocument();
+    expect(screen.getByText(/Date is required/)).toBeInTheDocument();
+
+    const dateAddedInput = screen.getByTestId(`${testId}-dateAdded`);
+    fireEvent.change(dateAddedInput, { target: { value: "bad-date" } });
+    fireEvent.click(submitButton);
+    await waitFor(() => {
+      expect(screen.getByText(/Date is required/)).toBeInTheDocument();
+    });
 
     const titleInput = screen.getByTestId(`${testId}-title`);
     fireEvent.change(titleInput, { target: { value: "a".repeat(256) } });
     fireEvent.click(submitButton);
-
     await waitFor(() => {
       expect(screen.getByText(/Max length 255 characters/)).toBeInTheDocument();
+    });
+    fireEvent.change(titleInput, { target: { value: "a" } });
+    fireEvent.click(submitButton);
+    await waitFor(() => {
+      expect(
+        screen.queryByText(/Max length 255 characters/),
+      ).not.toBeInTheDocument();
     });
 
     const explanationInput = screen.getByTestId(`${testId}-explanation`);
     fireEvent.change(explanationInput, { target: { value: "a".repeat(256) } });
     fireEvent.click(submitButton);
-
     await waitFor(() => {
       expect(screen.getByText(/Max length 255 characters/)).toBeInTheDocument();
     });
