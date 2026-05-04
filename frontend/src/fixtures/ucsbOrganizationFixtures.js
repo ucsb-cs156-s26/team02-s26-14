@@ -1,19 +1,17 @@
 const ucsbOrganizationFixtures = {
-  oneOrganization: 
-    {
-        orgCode: "ACM",
-        orgTranslationShort: "ACM",
-        orgTranslation: "Association for Computing Machinery",
-        inactive: false,
-    },
+  oneOrganization: {
+    orgCode: "ACM",
+    orgTranslationShort: "ACM",
+    orgTranslation: "Association for Computing Machinery",
+    inactive: false,
+  },
 
-  
   threeOrganizations: [
     {
-        orgCode: "ACM",
-        orgTranslationShort: "ACM",
-        orgTranslation: "Association for Computing Machinery",
-        inactive: false,
+      orgCode: "ACM",
+      orgTranslationShort: "ACM",
+      orgTranslation: "Association for Computing Machinery",
+      inactive: false,
     },
 
     {
@@ -32,4 +30,4 @@ const ucsbOrganizationFixtures = {
   ],
 };
 
-export {  ucsbOrganizationFixtures };
+export { ucsbOrganizationFixtures };
