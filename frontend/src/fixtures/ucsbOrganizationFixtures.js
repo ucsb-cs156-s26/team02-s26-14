@@ -1,13 +1,13 @@
 const ucsbOrganizationFixtures = {
-  oneOrganization: [
+  oneOrganization: 
     {
         orgCode: "ACM",
         orgTranslationShort: "ACM",
         orgTranslation: "Association for Computing Machinery",
         inactive: false,
     },
-  ],
 
+  
   threeOrganizations: [
     {
         orgCode: "ACM",
