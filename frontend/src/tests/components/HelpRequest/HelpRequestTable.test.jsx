@@ -63,11 +63,19 @@ describe("HelpRequestTable tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-solved`)).toHaveTextContent("true");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent(
+      "1",
+    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-solved`),
+    ).toHaveTextContent("true");
 
-    expect(screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`)).not.toBeInTheDocument();
-    expect(screen.queryByTestId(`${testId}-cell-row-0-col-Delete-button`)).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId(`${testId}-cell-row-0-col-Delete-button`),
+    ).not.toBeInTheDocument();
   });
 
   test("Has the expected column headers and content for adminUser", () => {
@@ -86,14 +94,22 @@ describe("HelpRequestTable tests", () => {
 
     const testId = "HelpRequestTable";
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent(
+      "1",
+    );
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
+      "2",
+    );
 
-    const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
+    const editButton = screen.getByTestId(
+      `${testId}-cell-row-0-col-Edit-button`,
+    );
     expect(editButton).toBeInTheDocument();
     expect(editButton).toHaveClass("btn-primary");
 
-    const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.getByTestId(
+      `${testId}-cell-row-0-col-Delete-button`,
+    );
     expect(deleteButton).toBeInTheDocument();
     expect(deleteButton).toHaveClass("btn-danger");
   });
@@ -112,7 +128,9 @@ describe("HelpRequestTable tests", () => {
       </QueryClientProvider>,
     );
 
-    const editButton = screen.getByTestId(`HelpRequestTable-cell-row-0-col-Edit-button`);
+    const editButton = screen.getByTestId(
+      `HelpRequestTable-cell-row-0-col-Edit-button`,
+    );
     fireEvent.click(editButton);
 
     await waitFor(() =>
@@ -138,7 +156,9 @@ describe("HelpRequestTable tests", () => {
       </QueryClientProvider>,
     );
 
-    const deleteButton = screen.getByTestId(`HelpRequestTable-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.getByTestId(
+      `HelpRequestTable-cell-row-0-col-Delete-button`,
+    );
     fireEvent.click(deleteButton);
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
