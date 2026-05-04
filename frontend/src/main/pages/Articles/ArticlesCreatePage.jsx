@@ -3,7 +3,7 @@ import ArticleForm from "main/components/Articles/ArticleForm";
 import { Navigate } from "react-router";
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
-  
+
 export default function ArticlesCreatePage({ storybook = false }) {
   const objectToAxiosParams = (article) => ({
     url: "/api/articles/post",
@@ -18,9 +18,7 @@ export default function ArticlesCreatePage({ storybook = false }) {
   });
 
   const onSuccess = (article) => {
-    toast(
-      `New article Created - id: ${article.id} title: ${article.title}`,
-    );
+    toast(`New article Created - id: ${article.id} title: ${article.title}`);
   };
 
   const mutation = useBackendMutation(
