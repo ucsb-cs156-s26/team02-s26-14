@@ -49,7 +49,9 @@ function RecommendationRequestForm({
               id="requesterEmail"
               type="email"
               isInvalid={Boolean(errors.requesterEmail)}
-              {...register("requesterEmail", { required: "RequesterEmail is required." })}
+              {...register("requesterEmail", {
+                required: "RequesterEmail is required.",
+              })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.requesterEmail?.message}
@@ -64,7 +66,9 @@ function RecommendationRequestForm({
               id="professorEmail"
               type="email"
               isInvalid={Boolean(errors.professorEmail)}
-              {...register("professorEmail", { required: "ProfessorEmail is required." })}
+              {...register("professorEmail", {
+                required: "ProfessorEmail is required.",
+              })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.professorEmail?.message}
@@ -83,7 +87,9 @@ function RecommendationRequestForm({
               as="textarea"
               rows={3}
               isInvalid={Boolean(errors.explanation)}
-              {...register("explanation", { required: "Explanation is required." })}
+              {...register("explanation", {
+                required: "Explanation is required.",
+              })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.explanation?.message}
@@ -95,7 +101,9 @@ function RecommendationRequestForm({
       <Row>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="dateRequested">Date Requested (iso format)</Form.Label>
+            <Form.Label htmlFor="dateRequested">
+              Date Requested (iso format)
+            </Form.Label>
             <Form.Control
               data-testid="RecommendationRequestForm-dateRequested"
               id="dateRequested"
@@ -113,7 +121,9 @@ function RecommendationRequestForm({
         </Col>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="dateNeeded">Date Needed (iso format)</Form.Label>
+            <Form.Label htmlFor="dateNeeded">
+              Date Needed (iso format)
+            </Form.Label>
             <Form.Control
               data-testid="RecommendationRequestForm-dateNeeded"
               id="dateNeeded"
