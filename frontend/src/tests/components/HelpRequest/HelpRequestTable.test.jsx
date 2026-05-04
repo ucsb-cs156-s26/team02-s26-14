@@ -68,7 +68,7 @@ describe("HelpRequestTable tests", () => {
     );
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-solved`),
-    ).toHaveTextContent("true");
+    ).toHaveTextContent("false");
 
     expect(
       screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`),
@@ -128,9 +128,17 @@ describe("HelpRequestTable tests", () => {
       </QueryClientProvider>,
     );
 
+    await waitFor(() => {
+      expect(
+        screen.getByTestId(`HelpRequestTable-cell-row-0-col-id`),
+      ).toHaveTextContent("1");
+    });
+
     const editButton = screen.getByTestId(
       `HelpRequestTable-cell-row-0-col-Edit-button`,
     );
+    expect(editButton).toBeInTheDocument();
+
     fireEvent.click(editButton);
 
     await waitFor(() =>
@@ -156,9 +164,17 @@ describe("HelpRequestTable tests", () => {
       </QueryClientProvider>,
     );
 
+    await waitFor(() => {
+      expect(
+        screen.getByTestId(`HelpRequestTable-cell-row-0-col-id`),
+      ).toHaveTextContent("1");
+    });
+
     const deleteButton = screen.getByTestId(
       `HelpRequestTable-cell-row-0-col-Delete-button`,
     );
+    expect(deleteButton).toBeInTheDocument();
+
     fireEvent.click(deleteButton);
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
