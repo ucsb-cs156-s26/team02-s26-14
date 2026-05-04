@@ -228,7 +228,18 @@
 <a name='L163'></a><a href='#L163'>163</a>
 <a name='L164'></a><a href='#L164'>164</a>
 <a name='L165'></a><a href='#L165'>165</a>
-<a name='L166'></a><a href='#L166'>166</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -382,7 +393,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -444,7 +466,9 @@ function <span class="fstat-no" title="function not covered" >RecommendationRequ
               id="requesterEmail"
               type="email"
               isInvalid={Boolean(errors.requesterEmail)}
-              {...register("requesterEmail", { required: "RequesterEmail is required." })}
+              {...register("requesterEmail", {
+                required: "RequesterEmail is required.",
+              })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
               {errors.requesterEmail?.message}
@@ -459,7 +483,9 @@ function <span class="fstat-no" title="function not covered" >RecommendationRequ
               id="professorEmail"
               type="email"
               isInvalid={Boolean(errors.professorEmail)}
-              {...register("professorEmail", { required: "ProfessorEmail is required." })}
+              {...register("professorEmail", {
+                required: "ProfessorEmail is required.",
+              })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
               {errors.professorEmail?.message}
@@ -478,7 +504,9 @@ function <span class="fstat-no" title="function not covered" >RecommendationRequ
               as="textarea"
               rows={3}
               isInvalid={Boolean(errors.explanation)}
-              {...register("explanation", { required: "Explanation is required." })}
+              {...register("explanation", {
+                required: "Explanation is required.",
+              })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
               {errors.explanation?.message}
@@ -490,7 +518,9 @@ function <span class="fstat-no" title="function not covered" >RecommendationRequ
       &lt;Row&gt;
         &lt;Col&gt;
           &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="dateRequested"&gt;Date Requested (iso format)&lt;/Form.Label&gt;
+            &lt;Form.Label htmlFor="dateRequested"&gt;
+              Date Requested (iso format)
+            &lt;/Form.Label&gt;
             &lt;Form.Control
               data-testid="RecommendationRequestForm-dateRequested"
               id="dateRequested"
@@ -508,7 +538,9 @@ function <span class="fstat-no" title="function not covered" >RecommendationRequ
         &lt;/Col&gt;
         &lt;Col&gt;
           &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="dateNeeded"&gt;Date Needed (iso format)&lt;/Form.Label&gt;
+            &lt;Form.Label htmlFor="dateNeeded"&gt;
+              Date Needed (iso format)
+            &lt;/Form.Label&gt;
             &lt;Form.Control
               data-testid="RecommendationRequestForm-dateNeeded"
               id="dateNeeded"
@@ -558,14 +590,15 @@ function <span class="fstat-no" title="function not covered" >RecommendationRequ
   );
 }
 &nbsp;
-export default RecommendationRequestForm;</pre></td></tr></table></pre>
+export default RecommendationRequestForm;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-05-04T02:29:13.611Z
+                at 2026-05-04T02:38:57.670Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
