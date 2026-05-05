@@ -173,7 +173,9 @@ describe("RecommendationRequestTable tests", () => {
     fireEvent.click(editButton);
 
     await waitFor(() =>
-      expect(mockedNavigate).toHaveBeenCalledWith("/recommendationrequests/edit/2"),
+      expect(mockedNavigate).toHaveBeenCalledWith(
+        "/recommendationrequests/edit/2",
+      ),
     );
   });
 
@@ -213,52 +215,50 @@ describe("RecommendationRequestTable tests", () => {
     expect(axiosMock.history.delete[0].params).toEqual({ id: 2 });
   });
   test("renders correctly when currentUser is undefined", () => {
-  render(
-    <QueryClientProvider client={queryClient}>
-      <MemoryRouter>
-        <RecommendationRequestTable
-          recommendationRequests={recommendationRequestFixtures.threeRequests}
-          currentUser={undefined}
-        />
-      </MemoryRouter>
-    </QueryClientProvider>,
-  );
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <RecommendationRequestTable
+            recommendationRequests={recommendationRequestFixtures.threeRequests}
+            currentUser={undefined}
+          />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
 
-  const testId = "RecommendationRequestTable";
+    const testId = "RecommendationRequestTable";
 
-  expect(
-    screen.getByTestId(`${testId}-cell-row-0-col-id`)
-  ).toBeInTheDocument();
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-id`),
+    ).toBeInTheDocument();
 
-  expect(
-    screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`)
-  ).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`),
+    ).not.toBeInTheDocument();
 
-  expect(
-    screen.queryByTestId(`${testId}-cell-row-0-col-Delete-button`)
-  ).not.toBeInTheDocument();
-});
+    expect(
+      screen.queryByTestId(`${testId}-cell-row-0-col-Delete-button`),
+    ).not.toBeInTheDocument();
+  });
 
-test("handles undefined recommendationRequests safely", () => {
-  render(
-    <QueryClientProvider client={queryClient}>
-      <MemoryRouter>
-        <RecommendationRequestTable
-          recommendationRequests={undefined}
-          currentUser={currentUserFixtures.userOnly}
-        />
-      </MemoryRouter>
-    </QueryClientProvider>,
-  );
+  test("handles undefined recommendationRequests safely", () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <RecommendationRequestTable
+            recommendationRequests={undefined}
+            currentUser={currentUserFixtures.userOnly}
+          />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
 
-  expect(
-    screen.getByTestId("RecommendationRequestTable-header-id")
-  ).toBeInTheDocument();
+    expect(
+      screen.getByTestId("RecommendationRequestTable-header-id"),
+    ).toBeInTheDocument();
 
-  expect(
-    screen.queryByTestId("RecommendationRequestTable-cell-row-0-col-id")
-  ).not.toBeInTheDocument();
-});
-
-  
+    expect(
+      screen.queryByTestId("RecommendationRequestTable-cell-row-0-col-id"),
+    ).not.toBeInTheDocument();
+  });
 });
