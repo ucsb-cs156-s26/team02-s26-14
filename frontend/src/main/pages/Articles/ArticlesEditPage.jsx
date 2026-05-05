@@ -37,7 +37,6 @@ export default function ArticlesEditPage({ storybook = false }) {
       explanation: article.explanation,
       email: article.email,
       dateAdded: article.dateAdded,
-
     },
   });
 
