@@ -30,7 +30,6 @@ describe("MenuItemReviewTable tests", () => {
   const expectedFields = [
     "id",
     "itemId",
-    ,
     "reviewerEmail",
     "stars",
     "dateReviewed",
