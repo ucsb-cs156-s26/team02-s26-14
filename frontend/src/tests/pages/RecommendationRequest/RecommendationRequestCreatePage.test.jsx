@@ -62,14 +62,19 @@ describe("RecommendationRequestCreatePage tests", () => {
 
   test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
     const queryClient = new QueryClient();
-    const ucsbDate = {
-      id: 17,
-      quarterYYYYQField: 20221,
-      name: "Groundhog Day",
-      localDateTime: "2022-02-02T00:00",
+    const recommendationRequest = {
+      id: 2,
+      requesterEmail: "abhijeet@ucsb.edu",
+      professorEmail: "abhijeet@ucsb.edu",
+      explanation: "hi",
+      dateRequested: "2026-05-03T20:20:21",
+      dateNeeded: "2026-05-03T20:20:22",
+      done: false,
     };
 
-    axiosMock.onPost("/api/recommendationrequests/post").reply(202, ucsbDate);
+    axiosMock
+      .onPost("/api/recommendationrequests/post")
+      .reply(202, recommendationRequest);
 
     render(
       <QueryClientProvider client={queryClient}>
