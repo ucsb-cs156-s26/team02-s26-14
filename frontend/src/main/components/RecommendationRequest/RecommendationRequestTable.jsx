@@ -94,9 +94,9 @@ export default function RecommendationRequestTable({
 
   return (
     <OurTable
-      data={recommendationRequests ?? []}
+      data={recommendationRequests}
       columns={columns}
-      testid={"RecommendationRequestTable"}
+      testid={testidPrefix}
     />
   );
 }
