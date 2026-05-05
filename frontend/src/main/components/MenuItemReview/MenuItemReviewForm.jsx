@@ -19,8 +19,6 @@ function MenuItemReviewForm({
 
   // Similar to UCSBDateForm; accepts values like 2024-05-15T13:30
   // Stryker disable Regex
-  const isodate_regex =
-    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
   // Stryker restore Regex
   const email_regex = /^\S+@\S+\.\S+$/;
 
@@ -52,7 +50,7 @@ function MenuItemReviewForm({
               type="text"
               isInvalid={Boolean(errors.itemId)}
               {...register("itemId", {
-                required: "Item Id is required."
+                required: "Item Id is required.",
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -85,9 +83,7 @@ function MenuItemReviewForm({
         </Col>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="stars">
-              Stars
-            </Form.Label>
+            <Form.Label htmlFor="stars">Stars</Form.Label>
             <Form.Control
               data-testid="MenuItemReviewForm-stars"
               id="stars"
