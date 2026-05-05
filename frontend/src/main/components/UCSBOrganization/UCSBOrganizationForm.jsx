@@ -20,28 +20,28 @@ function UCSBOrganizationForm({
   const testIdPrefix = "UCSBOrganizationForm";
 
   return (
-      <Form onSubmit={handleSubmit(submitAction)}>
-
-        <Form.Group className="mb-3">
+    <Form onSubmit={handleSubmit(submitAction)}>
+      <Form.Group className="mb-3">
         <Form.Label htmlFor="orgCode">Org Code</Form.Label>
         <Form.Control
-            data-testid={testIdPrefix + "-orgCode"}
-            id="orgCode"
-            type="text"
-            isInvalid={Boolean(errors.orgCode)}
-            {...register("orgCode", {
+          data-testid={testIdPrefix + "-orgCode"}
+          id="orgCode"
+          type="text"
+          isInvalid={Boolean(errors.orgCode)}
+          {...register("orgCode", {
             required: "Org Code is required.",
-            })}
-            disabled={Boolean(initialContents)}
+          })}
+          disabled={Boolean(initialContents)}
         />
         <Form.Control.Feedback type="invalid">
-            {errors.orgCode?.message}
+          {errors.orgCode?.message}
         </Form.Control.Feedback>
-        </Form.Group>
-
+      </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="orgTranslationShort">Org Translation Short</Form.Label>
+        <Form.Label htmlFor="orgTranslationShort">
+          Org Translation Short
+        </Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-orgTranslationShort"}
           id="orgTranslationShort"
@@ -78,13 +78,13 @@ function UCSBOrganizationForm({
 
       <Form.Group className="mb-3">
         <Form.Check
-            data-testid={testIdPrefix + "-inactive"}
-            id="inactive"
-            type="checkbox"
-            label="Inactive"
-            {...register("inactive")}
+          data-testid={testIdPrefix + "-inactive"}
+          id="inactive"
+          type="checkbox"
+          label="Inactive"
+          {...register("inactive")}
         />
-        </Form.Group>
+      </Form.Group>
 
       <Button type="submit" data-testid={testIdPrefix + "-submit"}>
         {buttonLabel}

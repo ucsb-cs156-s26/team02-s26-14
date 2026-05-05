@@ -2,7 +2,6 @@ import React from "react";
 import UCSBOrganizationForm from "main/components/UCSBOrganization/UCSBOrganizationForm";
 import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
 
-
 export default {
   title: "components/UCSBOrganization/UCSBOrganizationForm",
   component: UCSBOrganizationForm,
@@ -10,7 +9,7 @@ export default {
 
 const Template = (args) => {
   return <UCSBOrganizationForm {...args} />;
-}
+};
 
 export const Create = Template.bind({});
 
