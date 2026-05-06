@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import UCSBDiningCommonsMenuItemCreatePage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemCreatePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
@@ -7,12 +7,32 @@ import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import { expect } from "vitest";
+
+const mockToast = vi.fn();
+vi.mock("react-toastify", async (importOriginal) => {
+  const originalModule = await importOriginal();
+  return {
+    ...originalModule,
+    toast: vi.fn((x) => mockToast(x)),
+  };
+});
+
+const mockNavigate = vi.fn();
+vi.mock("react-router", async (importOriginal) => {
+  const originalModule = await importOriginal();
+  return {
+    ...originalModule,
+    Navigate: vi.fn((x) => {
+      mockNavigate(x);
+      return null;
+    }),
+  };
+});
 
 describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
-  const setupUserOnly = () => {
+  beforeEach(() => {
     axiosMock.reset();
     axiosMock.resetHistory();
     axiosMock
@@ -21,15 +41,10 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
     axiosMock
       .onGet("/api/systemInfo")
       .reply(200, systemInfoFixtures.showingNeither);
-  };
+  });
 
-  const queryClient = new QueryClient();
-  test("Renders expected content", async () => {
-    // arrange
-
-    setupUserOnly();
-
-    // act
+  test("renders without crashing", async () => {
+    const queryClient = new QueryClient();
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
@@ -38,11 +53,70 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
       </QueryClientProvider>,
     );
 
-    // assert
+    await waitFor(() => {
+      expect(
+        screen.getByTestId("UCSBDiningCommonsMenuItemForm-diningCommonsCode"),
+      ).toBeInTheDocument();
+    });
+  });
 
-    await screen.findByText("Create page not yet implemented");
-    expect(
-      screen.getByText("Create page not yet implemented"),
-    ).toBeInTheDocument();
+  test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
+    const queryClient = new QueryClient();
+    const ucsbItem = {
+      id: 17,
+      diningCommonsCode: "carrillo",
+      name: "bread",
+      station: "bakery",
+    };
+
+    axiosMock
+      .onPost("/api/ucsbdiningcommonsmenuitem/post")
+      .reply(202, ucsbItem);
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBDiningCommonsMenuItemCreatePage />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByTestId("UCSBDiningCommonsMenuItemForm-diningCommonsCode"),
+      ).toBeInTheDocument();
+    });
+
+    const diningCommonsCodeField = screen.getByTestId(
+      "UCSBDiningCommonsMenuItemForm-diningCommonsCode",
+    );
+    const nameField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-name");
+    const stationField = screen.getByTestId(
+      "UCSBDiningCommonsMenuItemForm-station",
+    );
+    const submitButton = screen.getByTestId(
+      "UCSBDiningCommonsMenuItemForm-submit",
+    );
+
+    fireEvent.change(diningCommonsCodeField, { target: { value: "carrillo" } });
+    fireEvent.change(nameField, { target: { value: "bread" } });
+    fireEvent.change(stationField, { target: { value: "bakery" } });
+
+    expect(submitButton).toBeInTheDocument();
+
+    fireEvent.click(submitButton);
+
+    await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
+
+    expect(axiosMock.history.post[0].params).toEqual({
+      diningCommonsCode: "carrillo",
+      name: "bread",
+      station: "bakery",
+    });
+
+    expect(mockToast).toBeCalledWith(
+      "New UCSBDiningCommonsMenuItem Created - id: 17 name: bread",
+    );
+    expect(mockNavigate).toBeCalledWith({ to: "/ucsbdiningcommonsmenuitem" });
   });
 });
