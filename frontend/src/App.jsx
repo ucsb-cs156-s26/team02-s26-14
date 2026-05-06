@@ -148,6 +148,12 @@ function App() {
           />
         </>
       )}
+      {/* HelpRequest Routes */}
+      {hasRole(currentUser, "ROLE_USER") && (
+        <>
+          <Route exact path="/helprequest" element={<HelpRequestIndexPage />} />
+        </>
+      )}
 
       {/* UCSB Organization */}
       {hasRole(currentUser, "ROLE_USER") && (
