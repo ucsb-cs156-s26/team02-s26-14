@@ -29,9 +29,8 @@ vi.mock("react-router", async (importOriginal) => {
   };
 });
 
-describe("RecommendationRequestCreatePage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
-
+describe("RecommendationRequestCreatePage tests", () => {
   beforeEach(() => {
     axiosMock.reset();
     axiosMock.resetHistory();
@@ -102,8 +101,11 @@ describe("RecommendationRequestCreatePage tests", () => {
     const dateNeededInput = screen.getByLabelText("Date Needed (iso format)");
     expect(dateNeededInput).toBeInTheDocument();
 
-    const createButton = screen.getByText("Create");
-    expect(createButton).toBeInTheDocument();
+    const doneInput = screen.getByLabelText("Done");
+    expect(doneInput).toBeInTheDocument();
+
+    const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
+    expect(submitButton).toBeInTheDocument();
 
     fireEvent.change(requesterEmailInput, {
       target: { value: "abhijeet@ucsb.edu" },
@@ -120,12 +122,18 @@ describe("RecommendationRequestCreatePage tests", () => {
     fireEvent.change(dateNeededInput, {
       target: { value: "2026-05-03T20:20:22" },
     });
+    fireEvent.change(doneInput, {
+      target: { value: false },
+    });
 
-    screen.debug();
+    console.log("ALARMs");
+    console.log(axiosMock.history.post);
 
-    fireEvent.click(createButton);
+    fireEvent.click(submitButton);
 
-    screen.debug();
+    console.log(axiosMock.history.post);
+
+    screen.debug(null, Infinity)
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
