@@ -29,7 +29,7 @@ vi.mock("react-router", async (importOriginal) => {
   };
 });
 
-  const axiosMock = new AxiosMockAdapter(axios);
+const axiosMock = new AxiosMockAdapter(axios);
 describe("RecommendationRequestCreatePage tests", () => {
   beforeEach(() => {
     axiosMock.reset();

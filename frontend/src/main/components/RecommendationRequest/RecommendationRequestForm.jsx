@@ -115,7 +115,7 @@ function RecommendationRequestForm({
               isInvalid={Boolean(errors.dateRequested)}
               {...register("dateRequested", {
                 required: true,
-                // pattern: isodate_regex,
+                pattern: isodate_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -135,7 +135,7 @@ function RecommendationRequestForm({
               isInvalid={Boolean(errors.dateNeeded)}
               {...register("dateNeeded", {
                 required: true,
-                // pattern: isodate_regex,
+                pattern: isodate_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">
