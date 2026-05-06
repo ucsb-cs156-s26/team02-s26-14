@@ -121,7 +121,11 @@ describe("RecommendationRequestCreatePage tests", () => {
       target: { value: "2026-05-03T20:20:22" },
     });
 
+    screen.debug();
+
     fireEvent.click(createButton);
+
+    screen.debug();
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
