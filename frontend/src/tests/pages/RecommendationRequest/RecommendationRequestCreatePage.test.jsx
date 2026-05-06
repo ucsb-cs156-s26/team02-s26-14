@@ -75,7 +75,7 @@ describe("RecommendationRequestCreatePage tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBDatesCreatePage />
+          <RecommendationRequestCreatePage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
