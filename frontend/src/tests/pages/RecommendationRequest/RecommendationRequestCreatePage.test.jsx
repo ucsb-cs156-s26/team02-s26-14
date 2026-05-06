@@ -1,5 +1,5 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-import UCSBDatesCreatePage from "main/pages/RecommendationRequest/RecommendationRequestCreatePage";
+import RecommendationRequestCreatePage from "main/pages/RecommendationRequest/RecommendationRequestCreatePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 
@@ -47,7 +47,7 @@ describe("RecommendationRequestCreatePage tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBDatesCreatePage />
+          <RecommendationRequestCreatePage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
@@ -63,8 +63,8 @@ describe("RecommendationRequestCreatePage tests", () => {
       requesterEmail: "abhijeet@ucsb.edu",
       professorEmail: "abhijeet@ucsb.edu",
       explanation: "hi",
-      dateRequested: "2026-05-03T20:20:21",
-      dateNeeded: "2026-05-03T20:20:22",
+      dateRequested: "2026-05-03T20:20",
+      dateNeeded: "2026-05-03T20:20",
       done: false,
     };
 
@@ -117,23 +117,20 @@ describe("RecommendationRequestCreatePage tests", () => {
       target: { value: "hi" },
     });
     fireEvent.change(dateRequestedInput, {
-      target: { value: "2026-05-03T20:20:21" },
+      target: { value: "2026-05-03T20:20" },
     });
     fireEvent.change(dateNeededInput, {
-      target: { value: "2026-05-03T20:20:22" },
-    });
-    fireEvent.change(doneInput, {
-      target: { value: false },
+      target: { value: "2026-05-03T20:21" },
     });
 
-    console.log("ALARMs");
-    console.log(axiosMock.history.post);
+    // console.log("ALARMs");
+    // console.log(axiosMock.history.post);
 
     fireEvent.click(submitButton);
 
-    console.log(axiosMock.history.post);
+    //console.log(axiosMock.history.post);
 
-    screen.debug(null, Infinity)
+    //screen.debug(null, Infinity)
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
@@ -141,13 +138,13 @@ describe("RecommendationRequestCreatePage tests", () => {
       requesterEmail: "abhijeet@ucsb.edu",
       professorEmail: "abhijeet@ucsb.edu",
       explanation: "hi",
-      dateRequested: "2026-05-03T20:20:21",
-      dateNeeded: "2026-05-03T20:20:22",
+      dateRequested: "2026-05-03T20:20",
+      dateNeeded: "2026-05-03T20:21",
       done: false,
     });
 
     expect(mockToast).toHaveBeenCalledWith(
-      "New recommendationRequest Created - id: 2",
+      "New Recommendation Request Created - id: 2",
     );
     expect(mockNavigate).toHaveBeenCalledWith({
       to: "/recommendationrequests",
