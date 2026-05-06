@@ -155,7 +155,7 @@ describe("RecommendationRequestIndexPage tests", () => {
       .reply(200, recommendationRequestFixtures.threeRequests);
     axiosMock
       .onDelete("/api/recommendationrequests")
-      .reply(200, { message: "Recommendation request with id 2 was deleted" });
+      .reply(200, "Recommendation request with id 2 was deleted");
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -183,7 +183,7 @@ describe("RecommendationRequestIndexPage tests", () => {
     fireEvent.click(deleteButton);
 
     await waitFor(() => {
-      expect(mockToast).toBeCalledWith(
+      expect(mockToast).toHaveBeenCalledWith(
         "Recommendation request with id 2 was deleted",
       );
     });
