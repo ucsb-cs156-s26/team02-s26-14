@@ -52,11 +52,8 @@ describe("RecommendationRequestCreatePage tests", () => {
         </MemoryRouter>
       </QueryClientProvider>,
     );
-
     await waitFor(() => {
-      expect(
-        screen.getByTestId("UCSBDateForm-quarterYYYYQ"),
-      ).toBeInTheDocument();
+      expect(screen.getByLabelText("Requester Email")).toBeInTheDocument();
     });
   });
 
@@ -85,37 +82,63 @@ describe("RecommendationRequestCreatePage tests", () => {
     );
 
     await waitFor(() => {
-      expect(
-        screen.getByTestId("UCSBDateForm-quarterYYYYQ"),
-      ).toBeInTheDocument();
+      expect(screen.getByLabelText("Requester Email")).toBeInTheDocument();
     });
 
-    const quarterYYYYQField = screen.getByTestId("UCSBDateForm-quarterYYYYQ");
-    const nameField = screen.getByTestId("UCSBDateForm-name");
-    const localDateTimeField = screen.getByTestId("UCSBDateForm-localDateTime");
-    const submitButton = screen.getByTestId("UCSBDateForm-submit");
+    const requesterEmailInput = screen.getByLabelText("Requester Email");
+    expect(requesterEmailInput).toBeInTheDocument();
 
-    fireEvent.change(quarterYYYYQField, { target: { value: "20221" } });
-    fireEvent.change(nameField, { target: { value: "Groundhog Day" } });
-    fireEvent.change(localDateTimeField, {
-      target: { value: "2022-02-02T00:00" },
+    const professorEmailInput = screen.getByLabelText("Professor Email");
+    expect(professorEmailInput).toBeInTheDocument();
+
+    const explanationInput = screen.getByLabelText("Explanation");
+    expect(explanationInput).toBeInTheDocument();
+
+    const dateRequestedInput = screen.getByLabelText(
+      "Date Requested (iso format)",
+    );
+    expect(dateRequestedInput).toBeInTheDocument();
+
+    const dateNeededInput = screen.getByLabelText("Date Needed (iso format)");
+    expect(dateNeededInput).toBeInTheDocument();
+
+    const createButton = screen.getByText("Create");
+    expect(createButton).toBeInTheDocument();
+
+    fireEvent.change(requesterEmailInput, {
+      target: { value: "abhijeet@ucsb.edu" },
+    });
+    fireEvent.change(professorEmailInput, {
+      target: { value: "abhijeet@ucsb.edu" },
+    });
+    fireEvent.change(explanationInput, {
+      target: { value: "hi" },
+    });
+    fireEvent.change(dateRequestedInput, {
+      target: { value: "2026-05-03T20:20:21" },
+    });
+    fireEvent.change(dateNeededInput, {
+      target: { value: "2026-05-03T20:20:22" },
     });
 
-    expect(submitButton).toBeInTheDocument();
-
-    fireEvent.click(submitButton);
+    fireEvent.click(createButton);
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      localDateTime: "2022-02-02T00:00",
-      name: "Groundhog Day",
-      quarterYYYYQ: "20221",
+      requesterEmail: "abhijeet@ucsb.edu",
+      professorEmail: "abhijeet@ucsb.edu",
+      explanation: "hi",
+      dateRequested: "2026-05-03T20:20:21",
+      dateNeeded: "2026-05-03T20:20:22",
+      done: false,
     });
 
-    expect(mockToast).toBeCalledWith(
-      "New ucsbDate Created - id: 17 name: Groundhog Day",
+    expect(mockToast).toHaveBeenCalledWith(
+      "New recommendationRequest Created - id: 2",
     );
-    expect(mockNavigate).toBeCalledWith({ to: "/ucsbdates" });
+    expect(mockNavigate).toHaveBeenCalledWith({
+      to: "/recommendationrequests",
+    });
   });
 });

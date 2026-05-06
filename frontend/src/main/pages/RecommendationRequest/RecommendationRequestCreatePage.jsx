@@ -9,7 +9,7 @@ export default function RecommendationRequestCreatePage({ storybook = false }) {
   const objectToAxiosParams = (recommendationRequest) => ({
     url: "/api/recommendationrequests/post",
     method: "POST",
-    params: {
+    data: {
       requesterEmail: recommendationRequest.requesterEmail,
       professorEmail: recommendationRequest.professorEmail,
       explanation: recommendationRequest.explanation,
