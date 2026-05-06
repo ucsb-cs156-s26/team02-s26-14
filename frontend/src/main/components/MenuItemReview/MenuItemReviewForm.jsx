@@ -123,7 +123,7 @@ function MenuItemReviewForm({
         <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="comments">Comments</Form.Label>
-            <Form.Check
+            <Form.Control
               data-testid="MenuItemReviewForm-comments"
               id="comments"
               type="text"
