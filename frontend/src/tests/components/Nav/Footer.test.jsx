@@ -86,18 +86,14 @@ describe("Footer tests", () => {
       await waitFor(() => {
         const expectedText =
           "This is a sample webapp using React with a Spring Boot backend.";
-        expect(screen.getByTestId("Footer").textContent).toContain(
-          expectedText,
-        );
+        expect(screen.getByTestId("Footer").textContent).toBe(expectedText);
       });
 
       const footer_see_source_code = screen.getByTestId(
         "footer-see-source-code",
       );
       expect(footer_see_source_code).toBeInTheDocument();
-      expect(footer_see_source_code).toHaveTextContent(
-        "See the source code on Github.",
-      );
+      expect(footer_see_source_code).toBeEmpty();
     });
   });
 });
