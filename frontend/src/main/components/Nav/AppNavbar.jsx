@@ -61,6 +61,9 @@ export default function AppNavbar({
                   <Nav.Link as={Link} to="/restaurants">
                     Restaurants
                   </Nav.Link>
+                  <Nav.Link as={Link} to="/ucsbdiningcommonsmenuitem">
+                    UCSB Dining Commons Menu Item
+                  </Nav.Link>
                   <Nav.Link as={Link} to="/menuitemreview">
                     Menu Item Review
                   </Nav.Link>

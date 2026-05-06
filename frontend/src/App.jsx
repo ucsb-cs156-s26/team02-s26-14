@@ -26,6 +26,10 @@ import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
 import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
 
+import UCSBDiningCommonsMenuItemIndexPage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemIndexPage";
+import UCSBDiningCommonsMenuItemCreatePage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemCreatePage";
+import UCSBDiningCommonsMenuItemEditPage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemEditPage";
+
 import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
 import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
 import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
@@ -48,7 +52,9 @@ function App() {
 
       {/* UCSB Dates */}
       {hasRole(currentUser, "ROLE_USER") && (
-        <Route exact path="/ucsbdates" element={<UCSBDatesIndexPage />} />
+        <>
+          <Route exact path="/ucsbdates" element={<UCSBDatesIndexPage />} />
+        </>
       )}
       {hasRole(currentUser, "ROLE_ADMIN") && (
         <>
@@ -61,6 +67,31 @@ function App() {
             exact
             path="/ucsbdates/create"
             element={<UCSBDatesCreatePage />}
+          />
+        </>
+      )}
+
+      {/* UCSB Dining Commons Menu Item */}
+      {hasRole(currentUser, "ROLE_USER") && (
+        <>
+          <Route
+            exact
+            path="/ucsbdiningcommonsmenuitem"
+            element={<UCSBDiningCommonsMenuItemIndexPage />}
+          />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_ADMIN") && (
+        <>
+          <Route
+            exact
+            path="/ucsbdiningcommonsmenuitem/edit/:id"
+            element={<UCSBDiningCommonsMenuItemEditPage />}
+          />
+          <Route
+            exact
+            path="/ucsbdiningcommonsmenuitem/create"
+            element={<UCSBDiningCommonsMenuItemCreatePage />}
           />
         </>
       )}
