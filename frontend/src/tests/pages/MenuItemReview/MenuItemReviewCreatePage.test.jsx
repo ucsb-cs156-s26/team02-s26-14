@@ -64,10 +64,10 @@ describe("MenuItemReviewCreatePage tests", () => {
     const queryClient = new QueryClient();
     const menuitemreview = {
       id: 3,
-      itemId: 44,
+      itemId: "44",
       reviewerEmail: "deliman@dmail.com",
-      stars: 3,
-      dateReviewed: "2023-12-23T02:12:12",
+      stars: "3",
+      dateReviewed: "2022-02-02T00:00",
       comments: "yumyum but nono",
     };
 
@@ -105,13 +105,13 @@ describe("MenuItemReviewCreatePage tests", () => {
     const createButton = screen.getByText("Create");
     expect(createButton).toBeInTheDocument();
 
-    fireEvent.change(itemIdInput, { target: { value: 44 } });
+    fireEvent.change(itemIdInput, { target: { value: "44" } });
     fireEvent.change(reviewerEmailInput, {
       target: { value: "deliman@dmail.com" },
     });
-    fireEvent.change(starsInput, { target: { value: 3 } });
+    fireEvent.change(starsInput, { target: { value: "3" } });
     fireEvent.change(dateReviewedInput, {
-      target: { value: "2023-12-23T02:12:12" },
+      target: { value: "2022-02-02T00:00" },
     });
     fireEvent.change(commentsInput, {
       target: { value: "yumyum but nono" },
@@ -121,10 +121,10 @@ describe("MenuItemReviewCreatePage tests", () => {
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      itemId: 44,
+      itemId: "44",
       reviewerEmail: "deliman@dmail.com",
-      stars: 3,
-      dateReviewed: "2023-12-23T02:12:12",
+      stars: "3",
+      dateReviewed: "2022-02-02T00:00",
       comments: "yumyum but nono",
     });
 
