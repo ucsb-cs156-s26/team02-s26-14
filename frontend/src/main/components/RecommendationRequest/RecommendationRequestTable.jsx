@@ -12,6 +12,7 @@ import { hasRole } from "main/utils/useCurrentUser";
 export default function RecommendationRequestTable({
   recommendationRequests,
   currentUser,
+  testIdPrefix = "RecommendationRequestTable",
 }) {
   const navigate = useNavigate();
 
@@ -36,7 +37,7 @@ export default function RecommendationRequestTable({
   const columns = [
     {
       header: "id",
-      accessorKey: "id", // accessor is the "key" in the data
+      accessorKey: "id",
     },
     {
       header: "Requester Email",
@@ -64,39 +65,18 @@ export default function RecommendationRequestTable({
     },
   ];
 
-  if (currentUser && hasRole(currentUser, "ROLE_ADMIN")) {
+  if (hasRole(currentUser, "ROLE_ADMIN")) {
+    columns.push(ButtonColumn("Edit", "primary", editCallback, testIdPrefix));
     columns.push(
-      ButtonColumn(
-        "Edit",
-        "primary",
-        editCallback,
-        "RecommendationRequestTable",
-      ),
-    );
-    columns.push(
-      ButtonColumn(
-        "Delete",
-        "danger",
-        deleteCallback,
-        "RecommendationRequestTable",
-      ),
+      ButtonColumn("Delete", "danger", deleteCallback, testIdPrefix),
     );
   }
-  /*
-  return (
-    <OurTable
-      data={recommendationRequests ?? []}
-      columns={columns}
-      testid={"RecommendationRequestTable"}
-    />
-  );
-  */
 
   return (
     <OurTable
-      data={recommendationRequests ?? []}
+      data={recommendationRequests}
       columns={columns}
-      testid={"RecommendationRequestTable"}
+      testid={testIdPrefix}
     />
   );
 }
