@@ -121,6 +121,7 @@ function ArticleForm({
           data-testid={testIdPrefix + "-dateAdded"}
           id="dateAdded"
           type="datetime-local"
+          step="1"
           isInvalid={Boolean(errors.dateAdded)}
           {...register("dateAdded", {
             required: true,
