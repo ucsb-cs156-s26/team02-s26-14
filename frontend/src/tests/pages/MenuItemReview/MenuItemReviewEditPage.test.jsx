@@ -88,14 +88,16 @@ describe("MenuItemReviewEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/menuitemreview", { params: { id: 17 } }).reply(200, {
-        id: 17,
-        itemId: 67,
-        reviewerEmail: "bigchungus@ucsb.edu",
-        stars: 5,
-        comments: "I loved the beans, so tasty!",
-        dateReviewed: "2026-05-05T12:19",
-      });
+      axiosMock
+        .onGet("/api/menuitemreview", { params: { id: 17 } })
+        .reply(200, {
+          id: 17,
+          itemId: 67,
+          reviewerEmail: "bigchungus@ucsb.edu",
+          stars: 5,
+          comments: "I loved the beans, so tasty!",
+          dateReviewed: "2026-05-05T12:19",
+        });
       axiosMock.onPut("/api/menuitemreview").reply(200, {
         id: "17",
         itemId: 68,
@@ -167,9 +169,7 @@ describe("MenuItemReviewEditPage tests", () => {
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
-      expect(mockToast).toBeCalledWith(
-        "Menu Item Review Updated - id: 17",
-      );
+      expect(mockToast).toBeCalledWith("Menu Item Review Updated - id: 17");
 
       expect(mockNavigate).toBeCalledWith({ to: "/menuitemreview" });
 
@@ -232,9 +232,7 @@ describe("MenuItemReviewEditPage tests", () => {
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
-      expect(mockToast).toBeCalledWith(
-        "Menu Item Review Updated - id: 17",
-      );
+      expect(mockToast).toBeCalledWith("Menu Item Review Updated - id: 17");
       expect(mockNavigate).toBeCalledWith({ to: "/menuitemreview" });
     });
   });
