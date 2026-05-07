@@ -75,6 +75,7 @@ function App() {
         </>
       )}
 
+      {/* Articles */}
       {hasRole(currentUser, "ROLE_USER") && (
         <>
           <Route exact path="/articles" element={<ArticlesIndexPage />} />
@@ -94,6 +95,7 @@ function App() {
           />
         </>
       )}
+
       {/* Dining Commons Menu Item */}
       {hasRole(currentUser, "ROLE_USER") && (
         <>
@@ -131,13 +133,13 @@ function App() {
         <>
           <Route
             exact
-            path="/articles/edit/:id"
-            element={<ArticlesEditPage />}
+            path="/recommendationrequests/edit/:id"
+            element={<RecommendationRequestEditPage />}
           />
           <Route
             exact
-            path="/articles/create"
-            element={<ArticlesCreatePage />}
+            path="/recommendationrequests/create"
+            element={<RecommendationRequestCreatePage />}
           />
         </>
       )}
