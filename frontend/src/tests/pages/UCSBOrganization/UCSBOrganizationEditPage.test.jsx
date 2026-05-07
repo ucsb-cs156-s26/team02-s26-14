@@ -163,9 +163,7 @@ describe("UCSBOrganizationEditPage tests", () => {
       const orgTranslationField = screen.getByTestId(
         "UCSBOrganizationForm-orgTranslation",
       );
-      const inactiveField = screen.getByTestId(
-        "UCSBOrganizationForm-inactive",
-      );
+      const inactiveField = screen.getByTestId("UCSBOrganizationForm-inactive");
       const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
 
       expect(orgCodeField).toBeInTheDocument();
