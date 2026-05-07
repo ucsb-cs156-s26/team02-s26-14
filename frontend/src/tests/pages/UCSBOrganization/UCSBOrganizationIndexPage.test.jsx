@@ -90,14 +90,14 @@ describe("UCSBOrganizationIndexPage tests", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByTestId(`${testId}-cell-row-0-col-id`),
-      ).toHaveTextContent("2");
+        screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
+      ).toHaveTextContent("ACM");
     });
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
-      "3",
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent(
+      "IEEE",
     );
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent(
-      "4",
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-orgCode`)).toHaveTextContent(
+      "DSC",
     );
 
     const createButton = screen.queryByText("Create UCSB Organization");
@@ -170,12 +170,12 @@ describe("UCSBOrganizationIndexPage tests", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByTestId(`${testId}-cell-row-0-col-id`),
+        screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
       ).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent(
-      "2",
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent(
+      "ACM",
     );
 
     const deleteButton = await screen.findByTestId(
