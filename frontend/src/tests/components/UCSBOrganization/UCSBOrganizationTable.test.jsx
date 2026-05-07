@@ -31,14 +31,12 @@ describe("UCSBOrganizationTable tests", () => {
   });
 
   const expectedHeaders = [
-    "id",
     "Org Code",
     "Org Translation Short",
     "Org Translation",
     "Inactive",
   ];
   const expectedFields = [
-    "id",
     "orgCode",
     "orgTranslationShort",
     "orgTranslation",
@@ -71,12 +69,12 @@ describe("UCSBOrganizationTable tests", () => {
   ];
 
   test("cellToAxiosParamsDelete returns correct delete config", () => {
-    const cell = { row: { original: { id: 5 } } };
+    const cell = { row: { original: { orgCode: "ACM" } } };
     const result = cellToAxiosParamsDelete(cell);
     expect(result).toEqual({
-      url: "/api/ucsborganizations",
+      url: "/api/ucsborganization",
       method: "DELETE",
-      params: { id: 5 },
+      params: { orgCode: "ACM" },
     });
   });
 
@@ -142,16 +140,13 @@ describe("UCSBOrganizationTable tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent(
-      "1",
-    );
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
     ).toHaveTextContent("ACM");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
-      "2",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-orgCode`),
+    ).toHaveTextContent("IEEE");
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-orgCode`),
     ).toHaveTextContent("IEEE");
@@ -196,16 +191,13 @@ describe("UCSBOrganizationTable tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent(
-      "1",
-    );
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
     ).toHaveTextContent("ACM");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
-      "2",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-orgCode`),
+    ).toHaveTextContent("IEEE");
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-orgCode`),
     ).toHaveTextContent("IEEE");
@@ -232,8 +224,8 @@ describe("UCSBOrganizationTable tests", () => {
 
     // assert - check that the expected content is rendered
     expect(
-      await screen.findByTestId(`${testId}-cell-row-0-col-id`),
-    ).toHaveTextContent("1");
+      await screen.findByTestId(`${testId}-cell-row-0-col-orgCode`),
+    ).toHaveTextContent("ACM");
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
     ).toHaveTextContent("ACM");
@@ -248,7 +240,7 @@ describe("UCSBOrganizationTable tests", () => {
 
     // assert - check that the navigate function was called with the expected path
     await waitFor(() =>
-      expect(mockedNavigate).toHaveBeenCalledWith("/ucsborganizations/edit/1"),
+      expect(mockedNavigate).toHaveBeenCalledWith("/ucsborganization/edit/ACM"),
     );
   });
 
@@ -258,7 +250,7 @@ describe("UCSBOrganizationTable tests", () => {
 
     const axiosMock = new AxiosMockAdapter(axios);
     axiosMock
-      .onDelete("/api/ucsborganizations")
+      .onDelete("/api/ucsborganization")
       .reply(200, { message: "Organization deleted" });
 
     // act - render the component
@@ -275,8 +267,8 @@ describe("UCSBOrganizationTable tests", () => {
 
     // assert - check that the expected content is rendered
     expect(
-      await screen.findByTestId(`${testId}-cell-row-0-col-id`),
-    ).toHaveTextContent("1");
+      await screen.findByTestId(`${testId}-cell-row-0-col-orgCode`),
+    ).toHaveTextContent("ACM");
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
     ).toHaveTextContent("ACM");
@@ -292,6 +284,6 @@ describe("UCSBOrganizationTable tests", () => {
     // assert - check that the delete endpoint was called
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
-    expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
+    expect(axiosMock.history.delete[0].params).toEqual({ orgCode: "ACM" });
   });
 });
