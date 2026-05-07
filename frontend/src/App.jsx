@@ -75,6 +75,7 @@ function App() {
         </>
       )}
 
+      {/* Articles */}
       {hasRole(currentUser, "ROLE_USER") && (
         <>
           <Route exact path="/articles" element={<ArticlesIndexPage />} />
@@ -94,6 +95,7 @@ function App() {
           />
         </>
       )}
+
       {/* Dining Commons Menu Item */}
       {hasRole(currentUser, "ROLE_USER") && (
         <>
