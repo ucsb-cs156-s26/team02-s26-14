@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s26/team02-s26-14
 owner: ucsb-cs156-s26
 repo_name: team02-s26-14
-pull_requests: [{"author":{"id":"U_kgDOCuio_A","is_bot":false,"login":"VishvaAr","name":"Vishva"},"headRefName":"Vishva-HelpRequest-IT","number":116,"title":"Add HelpRequest integration tests","url":"https://github.com/ucsb-cs156-s26/team02-s26-14/pull/116"}]
+pull_requests: [{"author":{"id":"U_kgDOCuio_A","is_bot":false,"login":"VishvaAr","name":"Vishva"},"headRefName":"Vishva-HelpRequest-E2E","number":117,"title":"End to end tests","url":"https://github.com/ucsb-cs156-s26/team02-s26-14/pull/117"},{"author":{"id":"U_kgDOCuio_A","is_bot":false,"login":"VishvaAr","name":"Vishva"},"headRefName":"Vishva-HelpRequest-IT","number":116,"title":"Add HelpRequest integration tests","url":"https://github.com/ucsb-cs156-s26/team02-s26-14/pull/116"}]
